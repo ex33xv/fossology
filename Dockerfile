@@ -66,6 +66,7 @@ RUN mkdir -p /usr/share/man/man1 /usr/share/man/man7 \
  && DEBIAN_FRONTEND=noninteractive apt-get update \
  && DEBIAN_FRONTEND=noninteractive apt-get upgrade -y \
  && DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends \
+      nano \
       curl \
       lsb-release \
       sudo \
