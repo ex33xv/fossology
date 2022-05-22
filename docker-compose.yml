@@ -60,6 +60,11 @@ services:
       - scheduler
     volumes:
       - repository:/srv/fossology/repository/
+      - ./certs/ca/ca.crt:/usr/local/apache2/conf/ssl/ca.crt
+      - ./certs/fossology/fossology.crt:/usr/local/apache2/conf/ssl/fossology.crt
+      - ./certs/fossology/fossology.key:/usr/local/apache2/conf/ssl/fossology.key
+      - ./conf/default-ssl.conf:/etc/apache2/sites-available/default-ssl.conf
+    command: bash -c "a2enmod SSL && a2ensite default-ssl.conf && a2dissite 000-default.conf"
     healthcheck:
       test: ["CMD-SHELL", "curl -sSf localhost/repo/api/v1/version || exit 1"]
       interval: 5s
